@@ -1,0 +1,12 @@
+---
+run:
+  modules-download-mode: readonly
+linters:
+  enable:
+    - zerolint
+linters-settings:
+  custom:
+    zerolint:
+      type: "module"
+      settings:
+        excluded: []
