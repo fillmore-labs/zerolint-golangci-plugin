@@ -10,3 +10,4 @@ linters-settings:
       type: "module"
       settings:
         excluded: []
+        basic: true

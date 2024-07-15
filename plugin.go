@@ -16,6 +16,7 @@ func init() { //nolint:gochecknoinits
 
 type Settings struct {
 	Excluded []string `json:"excluded"`
+	Basic    bool     `json:"basic"`
 }
 
 func New(settings any) (register.LinterPlugin, error) { //nolint:ireturn
@@ -38,7 +39,7 @@ func (p Plugin) BuildAnalyzers() ([]*analysis.Analyzer, error) {
 			excludes[ex] = struct{}{}
 		}
 
-		v := visitor.Visitor{Pass: pass, Excludes: excludes}
+		v := visitor.Visitor{Pass: pass, Excludes: excludes, Basic: p.settings.Basic}
 		v.Run()
 
 		return any(nil), nil

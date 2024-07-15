@@ -1,5 +1,5 @@
-fillmore-labs.com/zerolint v0.0.1 h1:L9ON5l0fJfASINhtIt4xngwcStsp1zqFtO4nCtOCIpY=
-fillmore-labs.com/zerolint v0.0.1/go.mod h1:HT5XckGjAEW+twhXtryNQzphPzHjCw5ccFZUqel3Kis=
+fillmore-labs.com/zerolint v0.0.2 h1:Wgg5K92ENelyg6GqybOLdj4kn3fsXtQAPyNxOmcO//M=
+fillmore-labs.com/zerolint v0.0.2/go.mod h1:HT5XckGjAEW+twhXtryNQzphPzHjCw5ccFZUqel3Kis=
 github.com/golangci/plugin-module-register v0.1.1 h1:TCmesur25LnyJkpsVrupv1Cdzo+2f7zX0H6Jkw1Ol6c=
 github.com/golangci/plugin-module-register v0.1.1/go.mod h1:TTpqoB6KkwOJMV8u7+NyXMrkwwESJLOkfl9TxR1DGFc=
 golang.org/x/mod v0.19.0 h1:fEdghXQSo20giMthA7cd28ZC+jts4amQ3YMXiP5oMQ8=
