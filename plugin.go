@@ -39,7 +39,13 @@ func (p Plugin) BuildAnalyzers() ([]*analysis.Analyzer, error) {
 			excludes[ex] = struct{}{}
 		}
 
-		v := visitor.Visitor{Pass: pass, Excludes: excludes, Basic: p.settings.Basic}
+		v := visitor.Run{
+			Visitor: visitor.Visitor{
+				Pass:     pass,
+				Excludes: excludes,
+			},
+			Basic: p.settings.Basic,
+		}
 		v.Run()
 
 		return any(nil), nil
