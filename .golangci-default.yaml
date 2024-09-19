@@ -6,6 +6,7 @@ linters:
   disable:
     # deprecated
     - execinquery
+    - exportloopref
     - gomnd
     # disabled
     - depguard
