@@ -1,5 +1,6 @@
 ---
 run:
+  go: "1.22.9"
   modules-download-mode: readonly
 linters:
   enable:
@@ -7,7 +8,7 @@ linters:
 linters-settings:
   custom:
     zerolint:
-      type: "module"
+      type: module
       settings:
         excluded: []
         basic: true

@@ -5,9 +5,7 @@ linters:
   enable-all: true
   disable:
     # deprecated
-    - execinquery
     - exportloopref
-    - gomnd
     # disabled
     - depguard
     - dupl
