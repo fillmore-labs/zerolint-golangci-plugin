@@ -9,7 +9,7 @@ name: Test
       - main
 jobs:
   test:
-    name: Test on Go ${{ matrix.go }}
+    name: Test on Go ${{ matrix.go-version }}
     permissions:
       checks: write
       contents: read
@@ -18,21 +18,20 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        go: ["1.23.3", "1.22.9"]
+        go-version: ["1.24.0-rc.3", "1.23.6", "1.22.12"]
     env:
       GOTOOLCHAIN: local
     steps:
       - name: ✔ Check out
         uses: actions/checkout@v4
-      - name: 🐹 Set up Go ${{ matrix.go }}
+      - name: 🐹 Set up Go ${{ matrix.go-version }}
         uses: actions/setup-go@v5
         with:
-          go-version: ${{ matrix.go }}
-          check-latest: true
+          go-version: ${{ matrix.go-version }}
       - name: 🧸 golangci-lint
         uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.62.0
+          version: v1.63.4
           args: --config=.golangci-default.yaml
       - name: 🔨 Test
         run: golangci-lint custom -v && ./custom-gcl run -v .

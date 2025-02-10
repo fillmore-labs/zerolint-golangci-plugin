@@ -2,7 +2,6 @@ package plugin
 
 import (
 	"fillmore-labs.com/zerolint/pkg/analyzer"
-	"fillmore-labs.com/zerolint/pkg/visitor"
 	"github.com/golangci/plugin-module-register/register"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
@@ -33,23 +32,11 @@ type Plugin struct {
 }
 
 func (p Plugin) BuildAnalyzers() ([]*analysis.Analyzer, error) {
-	run := func(pass *analysis.Pass) (any, error) {
-		excludes := make(map[string]struct{}, len(p.settings.Excluded))
-		for _, ex := range p.settings.Excluded {
-			excludes[ex] = struct{}{}
-		}
-
-		v := visitor.Run{
-			Visitor: visitor.Visitor{
-				Pass:     pass,
-				Excludes: excludes,
-			},
-			Basic: p.settings.Basic,
-		}
-		v.Run()
-
-		return any(nil), nil
-	}
+	run := analyzer.NewRun(
+		analyzer.WithExcludes(p.settings.Excluded),
+		analyzer.WithBasic(p.settings.Basic),
+		analyzer.WithGenerated(true),
+	)
 
 	analyzer := &analysis.Analyzer{
 		Name:     Name,
