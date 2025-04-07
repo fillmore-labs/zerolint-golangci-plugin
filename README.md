@@ -10,10 +10,10 @@ Add a file `.custom-gcl.yaml` to your source with
 
 ```YAML
 ---
-version: v1.63.4
+version: v2.0.2
 plugins:
   - module: fillmore-labs.com/zerolint-golangci-plugin
-    version: v0.0.7
+    version: v0.0.8
 ```
 
 then run `golangci-lint custom`. You get an `custom-gcl` executable that can be configured in `.golangci.yaml`:
@@ -23,13 +23,13 @@ then run `golangci-lint custom`. You get an `custom-gcl` executable that can be 
 linters:
   enable:
     - zerolint
-linters-settings:
-  custom:
-    zerolint:
-      type: "module"
-      settings:
-        basic: false
-        excluded: []
+  settings:
+    custom:
+      zerolint:
+        type: module
+        settings:
+          full: false
+          excluded: []
 ```
 
 and can be used like `golangci-lint`:

@@ -1,14 +1,17 @@
 ---
+version: "2"
+
 run:
-  go: "1.22.9"
+  go: 1.23.8
   modules-download-mode: readonly
+
 linters:
   enable:
     - zerolint
-linters-settings:
-  custom:
-    zerolint:
-      type: module
-      settings:
-        excluded: []
-        basic: true
+  settings:
+    custom:
+      zerolint:
+        type: module
+        settings:
+          full: false
+          excluded: []
