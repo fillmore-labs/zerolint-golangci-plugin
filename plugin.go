@@ -23,17 +23,20 @@ import (
 	"golang.org/x/tools/go/analysis/passes/inspect"
 )
 
+// Name is the linters name.
 const Name = "zerolint"
 
 func init() { //nolint:gochecknoinits
 	register.Plugin(Name, New)
 }
 
+// Settings are the linters settings.
 type Settings struct {
 	Excluded []string `json:"excluded"`
 	Full     bool     `json:"full"`
 }
 
+// New creates a new [Plugin] instance with the given [Settings].
 func New(settings any) (register.LinterPlugin, error) { //nolint:ireturn
 	s, err := register.DecodeSettings[Settings](settings)
 	if err != nil {
@@ -43,10 +46,12 @@ func New(settings any) (register.LinterPlugin, error) { //nolint:ireturn
 	return Plugin{settings: s}, nil
 }
 
+// Plugin is a zerolint linter as a [register.LinterPlugin].
 type Plugin struct {
 	settings Settings
 }
 
+// BuildAnalyzers returns the [analysis.Analyzer]s for a zerolint run.
 func (p Plugin) BuildAnalyzers() ([]*analysis.Analyzer, error) {
 	run := analyzer.NewRun(
 		analyzer.WithExcludes(p.settings.Excluded),
@@ -64,6 +69,7 @@ func (p Plugin) BuildAnalyzers() ([]*analysis.Analyzer, error) {
 	return []*analysis.Analyzer{analyzer}, nil
 }
 
+// GetLoadMode returns the golangci load mode.
 func (Plugin) GetLoadMode() string {
 	return register.LoadModeTypesInfo
 }

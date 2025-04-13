@@ -10,7 +10,7 @@ Add a file `.custom-gcl.yaml` to your source with
 
 ```YAML
 ---
-version: v2.0.2
+version: v2.1.1
 plugins:
   - module: fillmore-labs.com/zerolint-golangci-plugin
     version: v0.0.8

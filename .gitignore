@@ -10,6 +10,7 @@
 !/.golangci.yaml
 !/.markdownlint.yaml
 !/.mockery.yaml
+!/.pre-commit-config.yaml
 !/.prettierrc.yaml
 !/.yamlfmt
 !/.yamllint
