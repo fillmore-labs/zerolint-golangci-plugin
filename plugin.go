@@ -17,23 +17,24 @@
 package plugin
 
 import (
-	"fillmore-labs.com/zerolint/pkg/analyzer"
+	"regexp"
+
+	"fillmore-labs.com/zerolint/pkg/zerolint"
+	"fillmore-labs.com/zerolint/pkg/zerolint/level"
 	"github.com/golangci/plugin-module-register/register"
 	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/passes/inspect"
 )
 
-// Name is the linters name.
-const Name = "zerolint"
-
 func init() { //nolint:gochecknoinits
-	register.Plugin(Name, New)
+	register.Plugin(zerolint.Name, New)
 }
 
 // Settings are the linters settings.
 type Settings struct {
-	Excluded []string `json:"excluded"`
-	Full     bool     `json:"full"`
+	Excluded  []string        `json:"excluded,omitempty"`
+	Level     level.LintLevel `json:"level,omitempty"`
+	Match     *regexp.Regexp  `json:"match,omitempty"`
+	Generated bool            `json:"generated,omitempty"`
 }
 
 // New creates a new [Plugin] instance with the given [Settings].
@@ -53,20 +54,14 @@ type Plugin struct {
 
 // BuildAnalyzers returns the [analysis.Analyzer]s for a zerolint run.
 func (p Plugin) BuildAnalyzers() ([]*analysis.Analyzer, error) {
-	run := analyzer.NewRun(
-		analyzer.WithExcludes(p.settings.Excluded),
-		analyzer.WithFull(p.settings.Full),
-		analyzer.WithGenerated(true),
+	z := zerolint.New(
+		zerolint.WithLevel(p.settings.Level),
+		zerolint.WithExcludes(p.settings.Excluded),
+		zerolint.WithRegex(p.settings.Match),
+		zerolint.WithGenerated(p.settings.Generated),
 	)
 
-	analyzer := &analysis.Analyzer{
-		Name:     Name,
-		Doc:      analyzer.Doc,
-		Run:      run,
-		Requires: []*analysis.Analyzer{inspect.Analyzer},
-	}
-
-	return []*analysis.Analyzer{analyzer}, nil
+	return []*analysis.Analyzer{z}, nil
 }
 
 // GetLoadMode returns the golangci load mode.

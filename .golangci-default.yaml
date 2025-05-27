@@ -7,9 +7,6 @@ run:
 formatters:
   enable:
     - gofumpt
-  settings:
-    gofumpt:
-      module-path: fillmore-labs.com/zerolint
 
 linters:
   default: all
@@ -21,7 +18,6 @@ linters:
     - nonamedreturns
     - varnamelen
     - wrapcheck
-    - wsl
   settings:
     errcheck:
       exclude-functions:

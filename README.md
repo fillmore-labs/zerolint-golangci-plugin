@@ -10,16 +10,17 @@ Add a file `.custom-gcl.yaml` to your source with
 
 ```YAML
 ---
-version: v2.1.1
+version: v2.1.6
 plugins:
   - module: fillmore-labs.com/zerolint-golangci-plugin
-    version: v0.0.8
+    version: v0.0.9
 ```
 
 then run `golangci-lint custom`. You get an `custom-gcl` executable that can be configured in `.golangci.yaml`:
 
 ```YAML
 ---
+version: "2"
 linters:
   enable:
     - zerolint
@@ -27,9 +28,14 @@ linters:
     custom:
       zerolint:
         type: module
+        description: "zerolint checks usage patterns of pointers to zero-size types."
+        original-url: "https://fillmore-labs.com/zerolint"
         settings:
-          full: false
-          excluded: []
+          level: "full"
+          excluded:
+            - "struct{}"
+          generated: true
+          match: "^your\\.domain/package/path"
 ```
 
 and can be used like `golangci-lint`:

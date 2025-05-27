@@ -2,7 +2,7 @@
 version: "2"
 
 run:
-  go: 1.23.8
+  go: 1.23.9
   modules-download-mode: readonly
 
 linters:
@@ -12,6 +12,11 @@ linters:
     custom:
       zerolint:
         type: module
+        description: "zerolint checks usage patterns of pointers to zero-size types."
+        original-url: "https://fillmore-labs.com/zerolint"
         settings:
-          full: false
-          excluded: []
+          level: "full"
+          excluded:
+            - "struct{}"
+          generated: true
+          match: "^.*$"
