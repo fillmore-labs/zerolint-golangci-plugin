@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        go-version: ["1.24.3", "1.23.9"]
+        go-version: ["1.24.4", "1.23.10"]
     env:
       GOTOOLCHAIN: local
     steps:
@@ -31,7 +31,7 @@ jobs:
       - name: 🧸 golangci-lint
         uses: golangci/golangci-lint-action@v8
         with:
-          version: v2.1.6
+          version: v2.2.1
           args: --config=.golangci-default.yaml
       - name: 🔨 Test
         run: golangci-lint custom -v && ./custom-gcl run -v .

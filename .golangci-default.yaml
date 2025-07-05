@@ -18,6 +18,7 @@ linters:
     - nonamedreturns
     - varnamelen
     - wrapcheck
+    - wsl
   settings:
     errcheck:
       exclude-functions:
