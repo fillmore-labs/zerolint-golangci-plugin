@@ -19,10 +19,11 @@ package plugin
 import (
 	"regexp"
 
-	"fillmore-labs.com/zerolint/pkg/zerolint"
-	"fillmore-labs.com/zerolint/pkg/zerolint/level"
 	"github.com/golangci/plugin-module-register/register"
 	"golang.org/x/tools/go/analysis"
+
+	"fillmore-labs.com/zerolint/pkg/zerolint"
+	"fillmore-labs.com/zerolint/pkg/zerolint/level"
 )
 
 func init() { //nolint:gochecknoinits

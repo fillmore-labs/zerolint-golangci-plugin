@@ -1,8 +1,6 @@
 .*
 !/.buildkite/
-!/.codeclimate.yml
 !/.custom-gcl.yaml
-!/.envrc
 !/.gitattributes
 !/.github/
 !/.gitignore

@@ -2,7 +2,7 @@
 version: "2"
 
 run:
-  go: 1.23.10
+  go: 1.24.6
   modules-download-mode: readonly
 
 linters:
