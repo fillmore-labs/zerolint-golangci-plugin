@@ -1,5 +1,0 @@
----
-version: v2.4.0
-plugins:
-  - module: fillmore-labs.com/zerolint-golangci-plugin
-    path: .
