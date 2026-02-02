@@ -17,28 +17,28 @@ jobs:
     timeout-minutes: 10
     strategy:
       matrix:
-        go-version: ["1.25.4", "1.24.10"]
+        go-version: ["1.26.0-rc.2", "1.25.6", "1.24.12"]
     env:
       GOTOOLCHAIN: local
     steps:
       - name: ✔ Check out
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
       - name: 🐹 Set up Go ${{ matrix.go-version }}
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v6.2.0
         with:
           go-version: ${{ matrix.go-version }}
       - name: 🧸 golangci-lint
-        uses: golangci/golangci-lint-action@v9
+        uses: golangci/golangci-lint-action@v9.2.0
         with:
-          version: v2.6.2
+          version: v2.8.0
           args: --config=.golangci-default.yaml
       - name: 🔨 Test
         run: |
           cat <<EOF > .custom-gcl.yaml
           ---
-          version: v2.6.2
+          version: v2.8.0
           plugins:
             - module: fillmore-labs.com/zerolint-golangci-plugin
               path: .
