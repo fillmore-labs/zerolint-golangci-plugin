@@ -10,10 +10,10 @@ Add a file `.custom-gcl.yaml` to your source with
 
 ```YAML
 ---
-version: v2.8.0
+version: v2.11.3
 plugins:
   - module: fillmore-labs.com/zerolint-golangci-plugin
-    version: v0.0.15
+    version: v0.0.16
 ```
 
 then run `golangci-lint custom`. You get an `custom-gcl` executable that can be configured in `.golangci.yaml`:
